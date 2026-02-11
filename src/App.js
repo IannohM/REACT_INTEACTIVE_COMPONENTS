@@ -8,26 +8,25 @@ const messages = [
 function App() {
     const [step, setStep] = useState(1);
     const [isOpen, setIsOpen] = useState(true);
-    const handlePrevious = (event) => {
+    const handlePrevious = () => {
         if (step > 1) {
-            setStep(step - 1);
+            setStep((s) => s - 1);
         }
     };
 
-    const handleNext = (event) => {
+    const handleNext = () => {
         if (step < 3) {
-            setStep(step + 1);
+            setStep((s) => s + 1);
         }
     };
 
     const handleModal = () => {
-        setIsOpen(!isOpen);
+        setIsOpen((is) => !is);
     };
     return (
         <>
             <div className="close" onClick={handleModal}>
-                {' '}
-                &times;{' '}
+                &times;
             </div>
             {isOpen && (
                 <div className="steps">
