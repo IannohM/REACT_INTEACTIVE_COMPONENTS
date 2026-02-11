@@ -4,9 +4,11 @@ const messages = [
     'Invest your new income 🤑',
 ];
 function App() {
-    const handleClick = (event) => {
+    const handlePrevious = (event) => {
         alert(`Hello There`);
     };
+
+    const handleNext = (event) => {};
     const step = 1;
     return (
         <div className="steps">
@@ -20,10 +22,16 @@ function App() {
                 Step {step}: {messages[step - 1]}{' '}
             </p>
             <div className="buttons">
-                <button style={{ backgroundColor: '#7950f2', color: '#fff' }} onClick={handleClick}>
+                <button
+                    style={{ backgroundColor: '#7950f2', color: '#fff' }}
+                    onClick={handlePrevious}
+                >
                     Previous
                 </button>
-                <button style={{ backgroundColor: '#7950f2', color: '#fff' }}>
+                <button
+                    style={{ backgroundColor: '#7950f2', color: '#fff' }}
+                    onClick={handleNext }
+                >
                     Next
                 </button>
             </div>
