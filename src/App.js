@@ -5,9 +5,20 @@ const messages = [
     'Apply for jobs 💼',
     'Invest your new income 🤑',
 ];
-function App() {
+
+const App = () => {
+    return (
+        <div>
+            <Steps />
+        </div>
+    );
+};
+
+function Steps() {
     const [step, setStep] = useState(1);
     const [isOpen, setIsOpen] = useState(true);
+    const [score, setScore] = useState(0);
+
     const handlePrevious = () => {
         if (step > 1) {
             setStep((s) => s - 1);
@@ -23,10 +34,14 @@ function App() {
     const handleModal = () => {
         setIsOpen((is) => !is);
     };
+
+    const handleScore = () => {
+        setScore((score) => score + 1);
+    };
     return (
-        <>
+        <div>
             <div className="close" onClick={handleModal}>
-                &times;
+                {isOpen ? 'X' : 'open'}
             </div>
             {isOpen && (
                 <div className="steps">
@@ -40,28 +55,33 @@ function App() {
                         Step {step}: {messages[step - 1]}
                     </p>
                     <div className="buttons">
-                        <button
-                            style={{
-                                backgroundColor: '#7950f2',
-                                color: '#fff',
-                            }}
+                        <Button
+                            bgColor="#7950f2"
+                            textColor="#fff"
+                            text="Previous"
                             onClick={handlePrevious}
-                        >
-                            Previous
-                        </button>
-                        <button
-                            style={{
-                                backgroundColor: '#7950f2',
-                                color: '#fff',
-                            }}
+                            emoji="👈"
+                        />
+                        <Button
+                            bgColor="#7950f2"
+                            textColor="#fff"
+                            text="Next"
                             onClick={handleNext}
-                        >
-                            Next
-                        </button>
+                            emoji="👉"
+                        />
                     </div>
                 </div>
             )}
-        </>
+        </div>
+    );
+}
+
+function Button({textColor, bgColor, onClick, text, emoji}) {
+    return (
+        <button style={{ backgroundColor: bgColor, color: textColor }} onClick={onClick}>
+            <span>{emoji}</span>
+            {text}
+        </button>
     );
 }
 
